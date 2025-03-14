@@ -15,7 +15,6 @@ const Header: React.FC = () => {
     { id: 'features', title: 'features' },
     { id: 'audience', title: 'audience' },
     { id: 'business', title: 'business' },
-    { id: 'roadmap', title: 'roadmap' },
     { id: 'development-phases', title: 'development phases' }
   ];
 
@@ -24,7 +23,7 @@ const Header: React.FC = () => {
       setScrollPosition(window.scrollY);
       
       // Determine active section for nav highlighting
-      const sections = ['hero', 'features', 'audience', 'business', 'roadmap', 'development-phases'];
+      const sections = ['hero', 'features', 'audience', 'business', 'development-phases'];
       for (const section of sections.reverse()) {
         const element = document.getElementById(section);
         if (element && window.scrollY >= element.offsetTop - 100) {
