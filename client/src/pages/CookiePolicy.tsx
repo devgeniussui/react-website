@@ -12,10 +12,10 @@ const CookiePolicy: React.FC = () => {
       <main className="container mx-auto px-6 py-32">
         <div className="max-w-4xl mx-auto">
           <Link href="/">
-            <a className="inline-flex items-center text-[#7cff00] hover:underline mb-8">
+            <div className="inline-flex items-center text-[#7cff00] hover:underline mb-8 cursor-pointer">
               <ArrowLeft size={16} className="mr-2" />
               Back to Home
-            </a>
+            </div>
           </Link>
           
           <h1 className="text-4xl font-bold mb-8">Cookie Policy</h1>

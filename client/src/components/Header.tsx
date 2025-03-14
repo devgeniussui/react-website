@@ -65,12 +65,12 @@ const Header: React.FC = () => {
       <header className={`fixed top-0 w-full z-50 transition-all duration-700 ${scrollPosition > 50 ? 'bg-black/80 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-6'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           <Link href="/">
-            <a className="flex items-center gap-3 cursor-pointer">
+            <div className="flex items-center gap-3 cursor-pointer">
               <div className="w-12 h-12 bg-gradient-to-br from-[#7cff00] to-[#65cc00] rounded-full flex items-center justify-center text-black font-bold text-xl shadow-lg">M</div>
               <h1 className="text-2xl font-bold text-white">
                 <span className="text-[#7cff00]">Mercury</span> AI
               </h1>
-            </a>
+            </div>
           </Link>
           
           <button 
