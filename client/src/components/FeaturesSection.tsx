@@ -52,59 +52,60 @@ const FeaturesSection: React.FC = () => {
     {
       id: 1,
       icon: <Satellite size={24} />,
-      title: "Multi-Platform Monitoring",
-      description: "Track new token launches across Telegram, Discord, and Twitter in real-time with our advanced monitoring system.",
+      title: "Real-time Monitoring",
+      description: "Scans Telegram, Discord, Twitter, and DMs for newly launched token contracts.",
       features: [
         "Telegram channel monitoring",
         "Discord server integration",
-        "Twitter feed analysis"
+        "Twitter feed analysis",
+        "Direct messages scanning"
       ]
     },
     {
       id: 2,
       icon: <Brain size={24} />,
       title: "AI-Powered Analysis",
-      description: "Our advanced AI algorithms analyze token metrics and provide insights into potential opportunities and risks.",
+      description: "Uses AI to assess token potential, filtering out scams and highlighting promising projects.",
       features: [
-        "Predictive analytics",
-        "Risk assessment scores",
-        "Smart liquidity tracking"
+        "Token potential assessment",
+        "Scam filtering technology",
+        "Gem project identification"
       ],
       delay: 100
     },
     {
       id: 3,
       icon: <Bot size={24} />,
-      title: "Automated Sniper Bot",
-      description: "Lightning-fast execution of trades based on your predefined criteria with customizable parameters.",
+      title: "Sniper Bot Functionality",
+      description: "Enables users to automatically buy tokens the moment they launch.",
       features: [
-        "Sub-second transaction speed",
-        "Custom gas settings",
-        "Auto buy/sell configurations"
+        "Automatic token purchase",
+        "Launch-timed execution",
+        "Configurable buy parameters"
       ],
       delay: 200
     },
     {
       id: 4,
       icon: <Bell size={24} />,
-      title: "Real-Time Alerts",
-      description: "Receive instant notifications across multiple platforms when new opportunities arise or market conditions change.",
+      title: "Customizable Alerts",
+      description: "Users can set filters for specific keywords, dev wallets, and contract types.",
       features: [
-        "Telegram notifications",
-        "Email alerts",
-        "In-app messaging system"
+        "Keyword filtering",
+        "Dev wallet tracking",
+        "Contract type identification"
       ],
       delay: 300
     },
     {
       id: 5,
       icon: <Gauge size={24} />,
-      title: "Performance Dashboard",
-      description: "Comprehensive analytics dashboard to track your trading performance and bot activity.",
+      title: "Speed Optimization",
+      description: "Ensures ultra-fast transaction execution to secure early entry.",
       features: [
-        "Portfolio performance tracking",
-        "Historical trade analysis",
-        "Bot performance metrics"
+        "Transaction execution optimization",
+        "Early entry capability",
+        "Minimal delay technology"
       ],
       delay: 400
     },
@@ -112,11 +113,11 @@ const FeaturesSection: React.FC = () => {
       id: 6,
       icon: <Link2 size={24} />,
       title: "Multi-Chain Support",
-      description: "Track and trade across multiple blockchain networks with seamless integration.",
+      description: "Works across Ethereum, BSC, Solana, and other EVM-compatible chains.",
       features: [
         "Ethereum network",
         "Binance Smart Chain",
-        "Solana, Polygon, Avalanche"
+        "Solana & EVM-compatible chains"
       ],
       delay: 500
     }

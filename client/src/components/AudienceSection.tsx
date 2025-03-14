@@ -48,35 +48,35 @@ const AudienceSection: React.FC = () => {
     {
       id: "traders",
       icon: <Crosshair size={28} />,
-      title: "Day Traders",
-      description: "Perfect for active traders looking to capitalize on quick market movements and new token launches.",
+      title: "Crypto Traders & Investors",
+      description: "Looking for early entry into promising projects.",
       benefits: [
-        "Real-time market monitoring",
-        "Fast execution to capture early momentum",
-        "Automated buy/sell triggers"
+        "Early entry opportunities",
+        "Promising project identification",
+        "Risk mitigation with AI filtering"
       ]
     },
     {
-      id: "communities",
+      id: "snipers",
       icon: <Users size={28} />,
-      title: "Crypto Communities",
-      description: "Ideal for community managers and members who want to stay ahead of market trends.",
+      title: "Sniper Bot Users",
+      description: "Seeking an edge in token launches.",
       benefits: [
-        "Early detection of trending tokens",
-        "Multi-platform social monitoring",
-        "Community-based insights"
+        "Ultra-fast execution",
+        "Automated purchase on launch",
+        "Customizable parameters"
       ],
       delay: 100
     },
     {
-      id: "developers",
+      id: "communities",
       icon: <Briefcase size={28} />,
-      title: "Project Developers",
-      description: "Valuable for blockchain developers to monitor competitor launches and market activity.",
+      title: "Web3 Communities",
+      description: "Alpha groups wanting automated contract alerts.",
       benefits: [
-        "Competitor analysis tools",
-        "Smart contract monitoring",
-        "Market adoption tracking"
+        "Multi-platform monitoring",
+        "Automated contract alerts",
+        "Community-based insights"
       ],
       delay: 200
     }

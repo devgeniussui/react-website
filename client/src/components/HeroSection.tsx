@@ -47,7 +47,7 @@ const HeroSection: React.FC = () => {
                   : 'opacity-0 -translate-y-4'
               }`}
             >
-              Mercury AI is an advanced CA (Contract Address) Monitor & Sniper Bot designed to track and analyze new token launches across multiple platforms, including Telegram channels, Discord servers, and Twitter accounts, giving you an edge in the fast-paced crypto market.
+              Mercury Al is an advanced CA (Contract Address) Monitor & Sniper Bot designed to track and analyze new token launches across multiple platforms, including Telegram channels, direct messages (DMs), Discord servers, and Twitter accounts. The bot helps traders and investors identify high-potential tokens early, giving them an edge in the fast-paced crypto market.
             </p>
             
             <div 
@@ -103,54 +103,27 @@ const HeroSection: React.FC = () => {
                   <div className="flex items-center justify-between p-4 border-b border-white/5">
                     <div className="text-[#7cff00] font-semibold flex items-center gap-2">
                       <Zap size={18} />
-                      Mercury AI Monitor
+                      Video Demo
                     </div>
                     <div className="flex items-center gap-2 text-xs">
                       <div className="w-3 h-3 bg-[#7cff00] rounded-full animate-pulse"></div>
-                      Live
+                      Preview
                     </div>
                   </div>
-                  <div className="p-4 space-y-4">
-                    <div className="flex items-center justify-between text-sm bg-[#222222] p-3 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
-                      <div className="flex items-center gap-3">
-                        <div className="w-6 h-6 bg-[#7cff00]/20 rounded-full flex items-center justify-center text-[#7cff00]">
-                          <Zap size={14} />
-                        </div>
-                        <span>0x7c3b...5d2f</span>
+                  <div className="flex items-center justify-center h-60 bg-[#0a0a0a] text-center p-4">
+                    <div className="flex flex-col items-center gap-4">
+                      <div className="rounded-full bg-[#7cff00]/20 p-4 text-[#7cff00]">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
                       </div>
-                      <div className="text-[#7cff00] font-medium">New</div>
-                    </div>
-                    <div className="flex items-center justify-between text-sm bg-[#222222] p-3 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
-                      <div className="flex items-center gap-3">
-                        <div className="w-6 h-6 bg-[#7cff00]/20 rounded-full flex items-center justify-center text-[#7cff00]">
-                          <Code size={14} />
-                        </div>
-                        <span>0x91ab...34a1</span>
-                      </div>
-                      <div className="text-gray-400 font-medium">2m ago</div>
-                    </div>
-                    <div className="flex items-center justify-between text-sm bg-[#222222] p-3 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
-                      <div className="flex items-center gap-3">
-                        <div className="w-6 h-6 bg-[#7cff00]/20 rounded-full flex items-center justify-center text-[#7cff00]">
-                          <Database size={14} />
-                        </div>
-                        <span>0x55e2...78c9</span>
-                      </div>
-                      <div className="text-gray-400 font-medium">5m ago</div>
-                    </div>
-                    <div className="flex items-center justify-between text-sm bg-[#222222] p-3 rounded-lg hover:bg-white/5 cursor-pointer transition-colors">
-                      <div className="flex items-center gap-3">
-                        <div className="w-6 h-6 bg-[#7cff00]/20 rounded-full flex items-center justify-center text-[#7cff00]">
-                          <Gauge size={14} />
-                        </div>
-                        <span>0x12f4...9a3b</span>
-                      </div>
-                      <div className="text-gray-400 font-medium">12m ago</div>
+                      <div className="text-gray-400">Video demo coming soon</div>
                     </div>
                   </div>
                   <div className="p-4 flex justify-between border-t border-white/5">
                     <button className="px-3 py-1 rounded text-xs border border-[#7cff00]/40 text-[#7cff00] bg-[#7cff00]/5 hover:bg-[#7cff00]/10 transition-colors">
-                      Monitor All
+                      Watch Tutorial
                     </button>
                     <button className="px-3 py-1 rounded text-xs bg-[#7cff00] text-black hover:bg-[#65cc00] transition-colors font-medium">
                       Snipe Token
@@ -160,9 +133,9 @@ const HeroSection: React.FC = () => {
                 <div className="text-xs text-gray-400 flex justify-between items-center">
                   <div className="flex items-center gap-1">
                     <div className="w-2 h-2 rounded-full bg-[#7cff00]"></div>
-                    <span>32 active monitors</span>
+                    <span>Ultra-fast transaction execution</span>
                   </div>
-                  <button className="text-[#7cff00] hover:underline">View all</button>
+                  <button className="text-[#7cff00] hover:underline">Learn more</button>
                 </div>
               </div>
               <div className="absolute -z-10 -bottom-4 -right-4 w-full h-full bg-[#7cff00]/10 blur-xl rounded-full"></div>

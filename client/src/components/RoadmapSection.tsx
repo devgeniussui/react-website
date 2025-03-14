@@ -56,57 +56,62 @@ const RoadmapSection: React.FC = () => {
   
   const roadmapItems: RoadmapItemProps[] = [
     {
-      id: "q1-2023",
-      date: "Q1 2023",
-      title: "Initial Launch",
+      id: "q2-2024",
+      date: "Q2 2024",
+      title: "Beta Launch",
       milestones: [
-        "Telegram monitoring beta",
-        "Basic sniper functionality",
-        "Early access program"
-      ]
+        "Private beta for select users",
+        "Core monitoring & sniper functionality",
+        "Initial AI analysis implementation",
+        "Comprehensive security audits"
+      ],
+      isActive: true
     },
     {
-      id: "q2-2023",
-      date: "Q2 2023",
-      title: "Platform Expansion",
+      id: "q3-2024",
+      date: "Q3 2024",
+      title: "Public Launch",
       milestones: [
-        "Discord and Twitter integration",
-        "Multi-chain support expansion",
-        "Advanced AI monitoring algorithms"
+        "Full public release",
+        "Multi-chain support integration",
+        "Advanced filtering capabilities",
+        "Mobile application deployment"
       ],
       isRight: true
     },
     {
-      id: "q3-2023",
-      date: "Q3 2023",
-      title: "Enhanced Analytics",
+      id: "q4-2024",
+      date: "Q4 2024",
+      title: "Feature Enhancement",
       milestones: [
-        "Comprehensive dashboard release",
-        "Risk assessment scoring system",
-        "Portfolio performance tracking"
+        "Enhanced AI prediction algorithms",
+        "Additional supported platforms",
+        "API for third-party integration",
+        "Web3 community tools"
       ]
     },
     {
-      id: "q4-2023",
-      date: "Q4 2023",
-      title: "Advanced Trading Suite",
+      id: "q1-2025",
+      date: "Q1 2025",
+      title: "Premium Tools",
       milestones: [
-        "Custom strategy builder",
-        "Advanced trade execution options",
-        "API access for developers"
+        "Professional trading dashboard",
+        "Advanced sniper configuration options",
+        "Institutional-grade analytics",
+        "Expanded partnership program"
       ],
       isRight: true
     },
     {
-      id: "q1-2024",
-      date: "Q1 2024",
-      title: "Mobile App & Ecosystem",
+      id: "q2-2025",
+      date: "Q2 2025",
+      title: "Ecosystem Expansion",
       milestones: [
-        "iOS and Android applications",
-        "Ecosystem expansion with partner integrations",
-        "Community governance features"
-      ],
-      isActive: false
+        "Decentralized AI analytics platform",
+        "Cross-chain arbitrage capabilities",
+        "Advanced trading algorithm creator",
+        "Mercury AI token & governance"
+      ]
     }
   ];
   

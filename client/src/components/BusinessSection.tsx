@@ -7,28 +7,28 @@ const BusinessSection: React.FC = () => {
   
   const benefits = [
     {
-      id: 'time',
+      id: 'subscription',
       icon: <RotateCw size={24} />,
-      title: 'Time Efficiency',
-      description: 'Automate your monitoring and trading processes, saving you hours of manual work and ensuring you never miss an opportunity.'
+      title: 'Subscription-based Access',
+      description: 'Choose between Basic, Pro, and VIP tiers to get the level of functionality that suits your trading needs.'
     },
     {
-      id: 'decision',
+      id: 'license',
       icon: <BarChart2 size={24} />,
-      title: 'Enhanced Decision Making',
-      description: 'Make data-driven trading decisions with real-time analytics and AI-powered recommendations tailored to your strategy.'
+      title: 'One-time Purchase Licenses',
+      description: 'Get premium bot functionalities with a one-time purchase license for specific advanced features.'
+    },
+    {
+      id: 'affiliate',
+      icon: <Zap size={24} />,
+      title: 'Affiliate Partnerships',
+      description: 'Partner with Mercury AI through our affiliate program for crypto influencers and alpha groups.'
     },
     {
       id: 'edge',
-      icon: <Zap size={24} />,
-      title: 'Competitive Edge',
-      description: 'Stay ahead of other traders with lightning-fast execution and early access to emerging opportunities in the market.'
-    },
-    {
-      id: 'risk',
       icon: <Shield size={24} />,
-      title: 'Risk Mitigation',
-      description: 'Reduce exposure to scams and low-quality projects with our advanced security checks and AI risk assessment system.'
+      title: 'Competitive Edge',
+      description: 'Gain an advantage in the market with early detection of promising tokens and ultra-fast execution.'
     }
   ];
   
