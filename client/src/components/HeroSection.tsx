@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { Clock, Activity, RotateCcw, ChevronDown, Zap } from 'lucide-react';
 import useScrollAnimation from '@/hooks/useScrollAnimation';
 import VideoPlayer from './VideoPlayer';
 
 const HeroSection: React.FC = () => {
   const { animatedElements, registerElement } = useScrollAnimation();
+  const [showVideo, setShowVideo] = useState(false);
+  const videoRef = useRef<HTMLDivElement>(null);
+  
+  const scrollToVideo = () => {
+    if (videoRef.current) {
+      videoRef.current.scrollIntoView({ behavior: 'smooth' });
+      setShowVideo(true);
+      // Add a small delay to start the video after scrolling
+      setTimeout(() => {
+        const videoElement = document.querySelector('video');
+        if (videoElement) {
+          videoElement.play();
+        }
+      }, 700);
+    }
+  };
 
   return (
     <section id="hero" className="min-h-screen pt-28 flex items-center relative overflow-hidden">
@@ -62,7 +78,9 @@ const HeroSection: React.FC = () => {
               <button className="px-8 py-3 bg-[#7cff00] text-black rounded-lg font-semibold transition-all hover:scale-105 hover:shadow-lg">
                 Get Early Access
               </button>
-              <button className="px-8 py-3 bg-transparent border border-[#7cff00] text-[#7cff00] rounded-lg font-semibold transition-all hover:bg-[#7cff00]/10">
+              <button 
+                onClick={scrollToVideo}
+                className="px-8 py-3 bg-transparent border border-[#7cff00] text-[#7cff00] rounded-lg font-semibold transition-all hover:bg-[#7cff00]/10">
                 Watch Demo
               </button>
             </div>
@@ -111,7 +129,10 @@ const HeroSection: React.FC = () => {
                       Preview
                     </div>
                   </div>
-                  <div className="flex items-center justify-center bg-[#0a0a0a] text-center">
+                  <div 
+                    ref={videoRef}
+                    className="flex items-center justify-center bg-[#0a0a0a] text-center"
+                  >
                     <VideoPlayer
                       videoSrc="/videos/MercuryVideo.mp4"
                       className="w-full h-60"
