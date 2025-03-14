@@ -1,0 +1,438 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { 
+  ChevronDown, Satellite, Brain, Bot, Bell, Gauge, Link2, 
+  BarChart2, Crosshair, Users, RotateCw, Key, Briefcase,
+  Book, MessageCircle, ArrowRight, Shield, Zap, Code, Database
+} from 'lucide-react';
+
+interface SectionProps {
+  id: string;
+  title: string;
+  subtitle: string;
+}
+
+interface AnimatedItemProps {
+  id: string;
+  index: number;
+  delay?: number;
+  children: React.ReactNode;
+}
+
+const App: React.FC = () => {
+  const [scrollPosition, setScrollPosition] = useState<number>(0);
+  const [activeSection, setActiveSection] = useState<string>('hero');
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [animatedElements, setAnimatedElements] = useState<Record<string, boolean>>({});
+  const sectionsRef = useRef<Record<string, HTMLElement | null>>({});
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+      
+      // Determine active section for nav highlighting
+      const sections = ['hero', 'features', 'audience', 'business', 'roadmap'];
+      for (const section of sections.reverse()) {
+        const element = document.getElementById(section);
+        if (element && window.scrollY >= element.offsetTop - 100) {
+          setActiveSection(section);
+          break;
+        }
+      }
+
+      // Check if elements are in viewport for animations
+      Object.keys(sectionsRef.current).forEach(sectionId => {
+        const element = sectionsRef.current[sectionId];
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const isInViewport = rect.top < window.innerHeight - 100 && rect.bottom >= 0;
+          
+          if (isInViewport && !animatedElements[sectionId]) {
+            setAnimatedElements(prev => ({ ...prev, [sectionId]: true }));
+          }
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [animatedElements]);
+
+  const navigateTo = (id: string) => {
+    setMenuOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const registerSection = (id: string, element: HTMLElement | null) => {
+    if (element && !sectionsRef.current[id]) {
+      sectionsRef.current[id] = element;
+    }
+  };
+
+  // Custom component for animated section headers
+  const SectionHeader: React.FC<SectionProps> = ({ id, title, subtitle }) => (
+    <div 
+      ref={(el) => registerSection(`${id}-header`, el)} 
+      className={`text-center mb-16 transition-all duration-1000 ${
+        animatedElements[`${id}-header`] 
+          ? 'opacity-100 transform-none' 
+          : 'opacity-0 translate-y-10'
+      }`}
+    >
+      <h2 className="text-4xl md:text-5xl font-bold text-[#7cff00] mb-4">{title}</h2>
+      <p className="text-gray-400 max-w-xl mx-auto text-lg">{subtitle}</p>
+    </div>
+  );
+
+  // Custom animation component for staggered entries
+  const AnimatedItem: React.FC<AnimatedItemProps> = ({ id, index, delay = 0.1, children }) => (
+    <div 
+      ref={(el) => registerSection(`${id}-item-${index}`, el)} 
+      className={`transition-all duration-700 ${
+        animatedElements[`${id}-item-${index}`] 
+          ? 'opacity-100 transform-none' 
+          : 'opacity-0 translate-y-10'
+      }`}
+      style={{
+        transitionDelay: `${index * delay}s`
+      }}
+    >
+      {children}
+    </div>
+  );
+
+  return (
+    <div className="bg-[#111111] text-white min-h-screen overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        {/* Grid Overlay */}
+        <div className="absolute inset-0 opacity-10" style={{
+          backgroundImage: 'linear-gradient(#7cff00 1px, transparent 1px), linear-gradient(to right, #7cff00 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
+          transform: `translateY(${scrollPosition * 0.1}px)`
+        }}></div>
+        
+        {/* Animated Circles */}
+        {Array.from({length: 30}).map((_, i) => (
+          <div 
+            key={i}
+            className="absolute rounded-full bg-[#7cff00]/20"
+            style={{
+              width: Math.random() * 20 + 5 + 'px',
+              height: Math.random() * 20 + 5 + 'px',
+              top: Math.random() * 100 + '%',
+              left: Math.random() * 100 + '%',
+              filter: 'blur(2px)',
+              animation: `float ${Math.random() * 15 + 10}s infinite linear`,
+              opacity: Math.random() * 0.5 + 0.1
+            }}
+          ></div>
+        ))}
+        
+        {/* Light Source */}
+        <div className="absolute top-0 left-1/2 w-full h-screen bg-[#7cff00]/5 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2" style={{
+          opacity: Math.max(0.1, Math.min(0.3, 1 - scrollPosition / 1000))
+        }}></div>
+      </div>
+      
+      {/* Header */}
+      <header className={`fixed top-0 w-full z-50 transition-all duration-700 ${scrollPosition > 50 ? 'bg-black/80 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-6'}`}>
+        <div className="container mx-auto px-6 flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#7cff00] to-[#65cc00] rounded-full flex items-center justify-center text-black font-bold text-xl shadow-lg">M</div>
+            <h1 className="text-2xl font-bold text-white">
+              <span className="text-[#7cff00]">Mercury</span> AI
+            </h1>
+          </div>
+          
+          <button 
+            onClick={() => setMenuOpen(!menuOpen)} 
+            className="lg:hidden text-white focus:outline-none z-20"
+            aria-label="Toggle menu"
+          >
+            <div className={`w-6 h-0.5 bg-white mb-1.5 transition-all duration-300 ease-in-out transform ${menuOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
+            <div className={`w-6 h-0.5 bg-white mb-1.5 transition-all duration-300 ease-in-out ${menuOpen ? 'opacity-0' : 'opacity-100'}`}></div>
+            <div className={`w-6 h-0.5 bg-white transition-all duration-300 ease-in-out transform ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`}></div>
+          </button>
+          
+          <nav className={`lg:block ${menuOpen ? 'fixed inset-0 pt-20 px-6 bg-black/95 backdrop-blur-lg z-10' : 'hidden'}`}>
+            <ul className={`flex flex-col lg:flex-row items-center lg:items-center gap-8 lg:gap-10 ${menuOpen ? 'text-center' : ''}`}>
+              {['features', 'audience', 'business', 'roadmap'].map((item) => (
+                <li key={item} className="w-full lg:w-auto">
+                  <button 
+                    onClick={() => navigateTo(item)}
+                    className={`capitalize font-medium transition-all duration-300 hover:text-[#7cff00] relative 
+                      ${activeSection === item ? 'text-[#7cff00]' : 'text-white'} w-full lg:w-auto py-3 lg:py-0`}
+                  >
+                    {item}
+                    <span className={`absolute bottom-0 left-0 w-full h-0.5 bg-[#7cff00] transform scale-x-0 transition-transform duration-300 origin-left ${activeSection === item ? 'scale-x-100' : ''}`}></span>
+                  </button>
+                </li>
+              ))}
+              <li className="w-full lg:w-auto">
+                <a 
+                  href="https://docs.example.com" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="font-medium hover:text-[#7cff00] transition-all duration-300 flex items-center justify-center lg:justify-start gap-1 py-3 lg:py-0"
+                >
+                  <Book size={16} />
+                  <span>Docs</span>
+                </a>
+              </li>
+              <li className="w-full lg:w-auto">
+                <a 
+                  href="https://community.example.com" 
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="font-medium hover:text-[#7cff00] transition-all duration-300 flex items-center justify-center lg:justify-start gap-1 py-3 lg:py-0"
+                >
+                  <MessageCircle size={16} />
+                  <span>Community</span>
+                </a>
+              </li>
+              <li className="w-full lg:w-auto mt-4 lg:mt-0">
+                <button className="bg-[#7cff00] text-black rounded-md px-5 py-2 font-medium hover:bg-[#65cc00] transition-all duration-300 w-full lg:w-auto">
+                  Early Access
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section id="hero" className="min-h-screen pt-28 flex items-center relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          {/* Dynamic background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#111111] via-[#131313] to-[#0a0a0a]"></div>
+        </div>
+        
+        <div className="container mx-auto px-6 z-10 py-16">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="order-2 lg:order-1 space-y-8">
+              <div 
+                ref={(el) => registerSection('hero-badge', el)} 
+                className={`inline-block px-4 py-1 bg-[#7cff00]/10 border border-[#7cff00]/20 rounded-full text-[#7cff00] text-sm font-medium transition-all duration-700 ${
+                  animatedElements['hero-badge'] 
+                    ? 'opacity-100 transform-none' 
+                    : 'opacity-0 -translate-y-4'
+                }`}
+              >
+                Next-Gen Crypto Trading
+              </div>
+              
+              <h1 
+                ref={(el) => registerSection('hero-title', el)} 
+                className={`text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight transition-all duration-700 delay-100 ${
+                  animatedElements['hero-title'] 
+                    ? 'opacity-100 transform-none' 
+                    : 'opacity-0 -translate-y-4'
+                }`}
+              >
+                <span className="block">Advanced</span> 
+                <span className="text-[#7cff00] font-extrabold">CA Monitor</span> & 
+                <span className="text-[#7cff00] font-extrabold"> Sniper Bot</span>
+              </h1>
+              
+              <p 
+                ref={(el) => registerSection('hero-desc', el)} 
+                className={`text-lg text-gray-300 max-w-lg transition-all duration-700 delay-200 ${
+                  animatedElements['hero-desc'] 
+                    ? 'opacity-100 transform-none' 
+                    : 'opacity-0 -translate-y-4'
+                }`}
+              >
+                Mercury AI is an advanced CA (Contract Address) Monitor & Sniper Bot designed to track and analyze new token launches across multiple platforms, including Telegram channels, Discord servers, and Twitter accounts, giving you an edge in the fast-paced crypto market.
+              </p>
+              
+              <div 
+                ref={(el) => registerSection('hero-cta', el)} 
+                className={`flex flex-wrap gap-4 transition-all duration-700 delay-300 ${
+                  animatedElements['hero-cta'] 
+                    ? 'opacity-100 transform-none' 
+                    : 'opacity-0 -translate-y-4'
+                }`}
+              >
+                <button className="px-8 py-3 bg-[#7cff00] text-black rounded-lg font-semibold transition-all hover:scale-105 hover:shadow-lg">
+                  Get Early Access
+                </button>
+                <button className="px-8 py-3 bg-transparent border border-[#7cff00] text-[#7cff00] rounded-lg font-semibold transition-all hover:bg-[#7cff00]/10">
+                  Watch Demo
+                </button>
+              </div>
+              
+              <div 
+                ref={(el) => registerSection('hero-stats', el)} 
+                className={`flex items-center gap-4 pt-6 transition-all duration-700 delay-400 ${
+                  animatedElements['hero-stats'] 
+                    ? 'opacity-100 transform-none' 
+                    : 'opacity-0 -translate-y-4'
+                }`}
+              >
+                <div className="bg-[#222222] rounded-lg px-4 py-2 text-sm text-gray-400 flex items-center gap-2">
+                  <Users size={14} className="text-[#7cff00]" />
+                  <span>20k+ Traders</span>
+                </div>
+                <div className="bg-[#222222] rounded-lg px-4 py-2 text-sm text-gray-400 flex items-center gap-2">
+                  <Link2 size={14} className="text-[#7cff00]" />
+                  <span>15+ Chains</span>
+                </div>
+                <div className="bg-[#222222] rounded-lg px-4 py-2 text-sm text-gray-400 flex items-center gap-2">
+                  <Bell size={14} className="text-[#7cff00]" />
+                  <span>24/7 Monitoring</span>
+                </div>
+              </div>
+            </div>
+            
+            <div 
+              ref={(el) => registerSection('hero-video', el)} 
+              className={`order-1 lg:order-2 relative transition-all duration-1000 ${
+                animatedElements['hero-video'] 
+                  ? 'opacity-100 transform-none' 
+                  : 'opacity-0 translate-x-10'
+              }`}
+            >
+              <div className="w-full aspect-video bg-[#161616] rounded-xl overflow-hidden shadow-lg relative">
+                {/* Video placeholder with play button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-20 h-20 bg-[#7cff00] rounded-full flex items-center justify-center cursor-pointer transition-all hover:scale-110 hover:shadow-lg">
+                    <div className="w-0 h-0 border-t-8 border-t-transparent border-l-16 border-l-black border-b-8 border-b-transparent ml-1"></div>
+                  </div>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/60"></div>
+                
+                {/* Video overlay text */}
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <h3 className="text-2xl font-bold mb-1">How Mercury AI Works</h3>
+                  <p className="text-sm text-gray-300">See our advanced sniper bot in action</p>
+                </div>
+              </div>
+              
+              {/* Floating elements */}
+              <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-[#222222] rounded-lg flex items-center justify-center shadow-lg transform hover:rotate-6 transition-transform duration-300">
+                <div className="text-[#7cff00]">
+                  <Brain size={36} />
+                </div>
+              </div>
+              <div className="absolute -top-8 -left-8 w-24 h-24 bg-[#222222] rounded-lg flex items-center justify-center shadow-lg transform hover:-rotate-6 transition-transform duration-300">
+                <div className="text-[#7cff00]">
+                  <Bot size={36} />
+                </div>
+              </div>
+              <div className="absolute top-1/2 -right-4 w-16 h-16 bg-[#7cff00] rounded-lg flex items-center justify-center text-black shadow-lg animate-pulse">
+                <Zap size={28} />
+              </div>
+            </div>
+          </div>
+          
+          <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+            <p className="text-sm text-gray-400 mb-2">Discover Features</p>
+            <button 
+              onClick={() => navigateTo('features')} 
+              className="text-[#7cff00] animate-bounce"
+            >
+              <ChevronDown size={24} />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-24 relative bg-gradient-to-b from-[#111111] to-[#0c0c0c]">
+        <div className="container mx-auto px-6">
+          <SectionHeader 
+            id="features"
+            title="Key Features" 
+            subtitle="Powerful tools to give you an edge in the fast-paced crypto market"
+          />
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <Satellite size={36} />,
+                title: "Real-time Monitoring",
+                description: "Scans Telegram, Discord, Twitter, and DMs for newly launched token contracts, ensuring you never miss a potential opportunity."
+              },
+              {
+                icon: <Brain size={36} />,
+                title: "AI-Powered Analysis",
+                description: "Uses AI to assess token potential, filtering out scams and highlighting promising projects with high accuracy."
+              },
+              {
+                icon: <Bot size={36} />,
+                title: "Sniper Bot Functionality",
+                description: "Enables users to automatically buy tokens the moment they launch, securing the best possible entry position."
+              },
+              {
+                icon: <Bell size={36} />,
+                title: "Customizable Alerts",
+                description: "Set filters for specific keywords, dev wallets, and contract types to receive notifications that match your investment criteria."
+              },
+              {
+                icon: <Gauge size={36} />,
+                title: "Speed Optimization",
+                description: "Ensures ultra-fast transaction execution to secure early entry, giving you a competitive advantage."
+              },
+              {
+                icon: <Link2 size={36} />,
+                title: "Multi-Chain Support",
+                description: "Works across Ethereum, BSC, Solana, and other EVM-compatible chains for comprehensive market coverage."
+              }
+            ].map((feature, index) => (
+              <AnimatedItem key={index} id="features" index={index} delay={0.1}>
+                <div className="bg-[#161616] rounded-xl p-8 hover:shadow-lg transition-all duration-500 border border-[#222222] hover:border-[#7cff00]/30 group h-full">
+                  <div className="text-[#7cff00] mb-6 transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-[#7cff00] transition-colors">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-400 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              </AnimatedItem>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 bg-[#0a0a0a] border-t border-[#222222]">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-[#7cff00] rounded-full flex items-center justify-center text-black font-bold">M</div>
+              <h1 className="text-xl font-bold text-[#7cff00]">Mercury AI</h1>
+            </div>
+            
+            <div className="flex gap-4">
+              {['telegram', 'discord', 'twitter', 'github'].map((platform) => (
+                <a 
+                  key={platform}
+                  href="#" 
+                  className="w-10 h-10 rounded-full bg-[#161616] flex items-center justify-center text-[#7cff00] transition-all hover:bg-[#7cff00] hover:text-black"
+                >
+                  <i className={`fa-brands fa-${platform}`}></i>
+                </a>
+              ))}
+            </div>
+          </div>
+          
+          <div className="mt-8 pt-8 border-t border-[#222222] text-gray-500 text-sm text-center">
+            © 2025 Mercury AI. All rights reserved.
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
