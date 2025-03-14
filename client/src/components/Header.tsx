@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Book, MessageCircle } from 'lucide-react';
+import { useLocation, Link } from 'wouter';
 
 interface NavItem {
   id: string;
@@ -10,6 +11,8 @@ const Header: React.FC = () => {
   const [scrollPosition, setScrollPosition] = useState<number>(0);
   const [activeSection, setActiveSection] = useState<string>('hero');
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [location] = useLocation();
+  const isHomePage = location === '/';
   
   const navItems: NavItem[] = [
     { id: 'features', title: 'features' },
@@ -19,33 +22,41 @@ const Header: React.FC = () => {
   ];
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-      
-      // Determine active section for nav highlighting
-      const sections = ['hero', 'features', 'audience', 'business', 'development-phases'];
-      for (const section of sections.reverse()) {
-        const element = document.getElementById(section);
-        if (element && window.scrollY >= element.offsetTop - 100) {
-          setActiveSection(section);
-          break;
+    if (isHomePage) {
+      const handleScroll = () => {
+        setScrollPosition(window.scrollY);
+        
+        // Determine active section for nav highlighting
+        const sections = ['hero', 'features', 'audience', 'business', 'development-phases'];
+        for (const section of sections.reverse()) {
+          const element = document.getElementById(section);
+          if (element && window.scrollY >= element.offsetTop - 100) {
+            setActiveSection(section);
+            break;
+          }
         }
-      }
-    };
+      };
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+      window.addEventListener('scroll', handleScroll);
+      handleScroll(); // Initial check
+      return () => window.removeEventListener('scroll', handleScroll);
+    } else {
+      setScrollPosition(100); // Force header background on non-home pages
+    }
+  }, [isHomePage]);
   
   const navigateTo = (id: string) => {
     setMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop,
-        behavior: 'smooth'
-      });
+    if (isHomePage) {
+      const element = document.getElementById(id);
+      if (element) {
+        window.scrollTo({
+          top: element.offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    } else {
+      window.location.href = `/#${id}`;
     }
   };
 
@@ -53,12 +64,14 @@ const Header: React.FC = () => {
     <>
       <header className={`fixed top-0 w-full z-50 transition-all duration-700 ${scrollPosition > 50 ? 'bg-black/80 backdrop-blur-md shadow-lg py-3' : 'bg-transparent py-6'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-[#7cff00] to-[#65cc00] rounded-full flex items-center justify-center text-black font-bold text-xl shadow-lg">M</div>
-            <h1 className="text-2xl font-bold text-white">
-              <span className="text-[#7cff00]">Mercury</span> AI
-            </h1>
-          </div>
+          <Link href="/">
+            <a className="flex items-center gap-3 cursor-pointer">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#7cff00] to-[#65cc00] rounded-full flex items-center justify-center text-black font-bold text-xl shadow-lg">M</div>
+              <h1 className="text-2xl font-bold text-white">
+                <span className="text-[#7cff00]">Mercury</span> AI
+              </h1>
+            </a>
+          </Link>
           
           <button 
             onClick={() => setMenuOpen(!menuOpen)} 

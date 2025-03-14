@@ -58,10 +58,10 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="font-semibold text-lg mb-4">Legal</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-[#7cff00] transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#7cff00] transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#7cff00] transition-colors">Cookie Policy</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#7cff00] transition-colors">Disclaimer</a></li>
+              <li><a href="/terms-of-service" className="text-gray-400 hover:text-[#7cff00] transition-colors">Terms of Service</a></li>
+              <li><a href="/privacy-policy" className="text-gray-400 hover:text-[#7cff00] transition-colors">Privacy Policy</a></li>
+              <li><a href="/cookie-policy" className="text-gray-400 hover:text-[#7cff00] transition-colors">Cookie Policy</a></li>
+              <li><a href="/disclaimer" className="text-gray-400 hover:text-[#7cff00] transition-colors">Disclaimer</a></li>
             </ul>
             
 
