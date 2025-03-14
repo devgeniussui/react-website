@@ -26,6 +26,7 @@ const Home: React.FC = () => {
         <AudienceSection />
         <BusinessSection />
         <RoadmapSection />
+        <DevelopmentPhasesSection />
         <CTASection />
       </main>
       

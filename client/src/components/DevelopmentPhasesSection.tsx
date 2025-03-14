@@ -78,7 +78,7 @@ const DevelopmentPhasesSection: React.FC = () => {
   ];
   
   return (
-    <section id="development" className="py-24 relative">
+    <section id="development-phases" className="py-24 relative">
       <div className="container mx-auto px-6">
         <div 
           ref={(el) => registerElement('development-header', el)} 
