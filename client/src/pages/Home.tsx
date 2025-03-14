@@ -6,6 +6,7 @@ import FeaturesSection from '@/components/FeaturesSection';
 import AudienceSection from '@/components/AudienceSection';
 import BusinessSection from '@/components/BusinessSection';
 import RoadmapSection from '@/components/RoadmapSection';
+import DevelopmentPhasesSection from '@/components/DevelopmentPhasesSection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 

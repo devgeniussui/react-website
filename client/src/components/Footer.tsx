@@ -44,8 +44,6 @@ const Footer: React.FC = () => {
               <li><a href="#features" className="text-gray-400 hover:text-[#7cff00] transition-colors">Features</a></li>
               <li><a href="#" className="text-gray-400 hover:text-[#7cff00] transition-colors">Early Access</a></li>
               <li><a href="#" className="text-gray-400 hover:text-[#7cff00] transition-colors">Documentation</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#7cff00] transition-colors">API</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#7cff00] transition-colors">Pricing</a></li>
             </ul>
           </div>
           
@@ -53,10 +51,7 @@ const Footer: React.FC = () => {
             <h3 className="font-semibold text-lg mb-4">Company</h3>
             <ul className="space-y-2">
               <li><a href="#" className="text-gray-400 hover:text-[#7cff00] transition-colors">About Us</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#7cff00] transition-colors">Blog</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#7cff00] transition-colors">Careers</a></li>
               <li><a href="#" className="text-gray-400 hover:text-[#7cff00] transition-colors">Contact</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-[#7cff00] transition-colors">Press Kit</a></li>
             </ul>
           </div>
           
@@ -69,24 +64,12 @@ const Footer: React.FC = () => {
               <li><a href="#" className="text-gray-400 hover:text-[#7cff00] transition-colors">Disclaimer</a></li>
             </ul>
             
-            <div className="mt-8">
-              <h3 className="font-semibold text-lg mb-4">Subscribe</h3>
-              <div className="flex">
-                <input 
-                  type="email" 
-                  placeholder="Your email" 
-                  className="bg-[#111111] border border-white/10 rounded-l-lg px-4 py-2 text-sm focus:outline-none focus:border-[#7cff00]/50 flex-1"
-                />
-                <button className="bg-[#7cff00] text-black px-4 py-2 rounded-r-lg text-sm font-medium hover:bg-[#65cc00] transition-colors">
-                  Subscribe
-                </button>
-              </div>
-            </div>
+
           </div>
         </div>
         
         <div className="border-t border-white/5 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <div className="text-gray-500 text-sm mb-4 md:mb-0">© 2023 Mercury AI. All rights reserved.</div>
+          <div className="text-gray-500 text-sm mb-4 md:mb-0">© 2024 Mercury AI. All rights reserved.</div>
           <div className="text-gray-500 text-sm">Made with <span className="text-[#7cff00]">♥</span> for crypto traders worldwide</div>
         </div>
       </div>
